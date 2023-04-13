@@ -1,8 +1,4 @@
 import {
-  onSnapshot,
-} from 'firebase/firestore';
-
-import {
   savePublic,
   postData,
   getTimestamp,
@@ -97,7 +93,7 @@ export const timeline = (onNavigate) => {
     await signOff();
     onNavigate('/');
   });
-  onSnapshot(postData(), (querySnapshot) => {
+  postData((querySnapshot) => {
     feedSection.innerHTML = '';
     querySnapshot.forEach((docum) => {
       // console.log(docum.data());

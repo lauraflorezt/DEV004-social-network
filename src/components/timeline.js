@@ -56,8 +56,8 @@ export const timeline = (onNavigate) => {
   profileIcon.src = profileProfile;
   profileIcon.setAttribute('alt', 'Profile Icon');
   logOutIcon.setAttribute('id', 'logOutIcon');
-  logOutIcon.setAttribute('src', '../Img/LogOutIcon.png');
   logOutIcon.src = outOut;
+  logOutIcon.setAttribute('alt', 'LogOutIcon');
   footerHMTL.setAttribute('id', 'footerHTML');
 
   //* Aqui estamos agregando todo a la sección de SignInPage
@@ -108,6 +108,7 @@ export const timeline = (onNavigate) => {
       const editBtn = document.createElement('button');
       const deleteBtn = document.createElement('button');
       const divlike = document.createElement('div');
+      const btnLike = document.createElement('button');
       const likePawZero = document.createElement('img');
       const likePaw = document.createElement('img');
 
@@ -120,13 +121,18 @@ export const timeline = (onNavigate) => {
       halfBtns.setAttribute('id', 'halfBtns');
       editBtn.setAttribute('id', 'editBtn');
       deleteBtn.setAttribute('id', 'deleteBtn');
+
+      btnLike.setAttribute('id', 'btnLike');
+
       likePawZero.setAttribute('id', 'likePawZero');
       likePawZero.src = likeIcon;
       likePawZero.setAttribute('alt', 'likePawZero');
+
       likePaw.setAttribute('id', 'likePaw');
       likePaw.src = likedIcon;
       likePaw.setAttribute('alt', 'likePaw');
-      // console.log(docum.data());
+      likePaw.style.display = 'none';
+
       pComment.textContent = `${docum.data().name}: ${docum.data().publicacion}`;
       postSection.appendChild(pComment);
 
@@ -135,15 +141,23 @@ export const timeline = (onNavigate) => {
       halfpComment.appendChild(pComment);
       halfBtns.appendChild(editBtn);
       halfBtns.appendChild(deleteBtn);
-      halfBtns.appendChild(likePawZero);
-      likePawZero.appendChild(likePaw);
+      halfBtns.appendChild(btnLike);
+      btnLike.appendChild(likePaw);
+      btnLike.appendChild(likePawZero);
       halfBtns.appendChild(divlike);
       postSection.appendChild(halfpComment);
       postSection.appendChild(halfBtns);
       feedSection.appendChild(postSection);
 
-      likePawZero.addEventListener('click', () => {
-        console.log(docum.data().email);
+      if (docum.data().likes.includes(auth.currentUser.uid)) {
+        likePawZero.style.display = 'none';
+        likePaw.style.display = 'flex';
+      } else {
+        likePaw.style.display = 'none';
+        likePawZero.style.display = 'flex';
+      }
+      // Boton de like y dislike
+      btnLike.addEventListener('click', () => {
         console.log(auth.currentUser.email);
         const user = auth.currentUser.uid;
         const likes = docum.data().likes;
@@ -151,10 +165,8 @@ export const timeline = (onNavigate) => {
 
         if (!likes.includes(user)) {
           like(docum, auth);
-          likePawZero.replaceWith(likePaw);
         } else {
           dislike(docum, auth);
-          likePaw.replaceWith(likePawZero);
         }
       });
 

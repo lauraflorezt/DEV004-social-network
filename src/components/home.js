@@ -1,4 +1,4 @@
-import { logo, slogan } from './img';
+import { logo, slogan } from './img.js';
 
 export const home = (onNavigate) => {
   //* Aqui estamos creando lo que va en HTML.

@@ -10,6 +10,7 @@ import {
   updateDoc,
   arrayUnion,
   arrayRemove,
+  onSnapshot,
 } from 'firebase/firestore';
 import { app } from './firebaseConfig';
 
@@ -21,7 +22,7 @@ const savePublic = (publicacion, likes, name, email, time) => addDoc(collection(
   publicacion, likes, name, email, time,
 });
 
-const postData = () => query(collection(db, 'publication'), orderBy('time', 'desc'));
+const postData = (callback) => onSnapshot(query(collection(db, 'publication'), orderBy('time', 'desc')), callback);
 
 const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 

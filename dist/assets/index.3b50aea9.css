@@ -202,7 +202,7 @@ input {
   display: flex;
   justify-content: space-around;
   border-width: 0 0 1px 1px;
-  background-color: #8b8381;
+  background-color: #645755;
   border-radius: 0 0 10px 10px;
   color:black;
   border-left: 1px solid black;
@@ -245,9 +245,3 @@ input {
 h3 + p {
   margin-top: 10px;
 }
-
-#btnLike{
-  background-color: #8b8381;
-  border: none; 
-}
-

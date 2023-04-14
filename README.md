@@ -2,32 +2,20 @@
 
 ## Índice
 
-* [1. Preámbulo](#1-preámbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Criterios de aceptación mínimos del proyecto](#4-criterios-de-aceptación-mínimos-del-proyecto)
-* [5. Hacker edition](#6-hacker-edition)
-* [6. Entrega](#7-entrega)
-* [7. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
+* [1. Resumen del proyecto](#1-resumen-del-proyecto)
+* [2. Objetivos de aprendizaje](#2-objetivos-de-aprendizaje)
+* [3. Definición y objetivos del proyecto](#3-definición-y-objetivos-del-proyecto)
+* [4. Historias de usuario](#4-historias-de-usuario)
+* [5. Diseño de la interfaz de usuario](#5-diseño-de-la-interfaz-de-usuario)
+* [6. Responsive](#6-responsive)
 
-## 1. Preámbulo
-
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
-
-![adem-ay-Tk9m_HP4rgQ-unsplash](https://user-images.githubusercontent.com/110297/135544666-4efa54f1-4ff6-4c4c-b398-6df04ef56117.jpg)
-
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
-
-## 2. Resumen del proyecto
+## 1. Resumen del proyecto
 
 En este proyecto se ha desarrollado una red social centrada en las mascotas, que permite a los usuarios crear cuentas personalizadas y acceder a ella de manera fácil y rápida. Los usuarios pueden publicar información, y disfrutar de la interacción con otros amantes de las mascotas en línea (publicar y likear dichas publicaciones). La red social se construyó utilizando una Single-page Application (SPA) con varias vistas o páginas para una experiencia de usuario fluida y satisfactoria. Además, se utilizó Firebase como backend y Vite como herramienta de compilación para garantizar un rendimiento rápido y confiable. En general, este proyecto se ha creado para fomentar la comunidad de amantes de las mascotas y proporcionar una plataforma para la interacción y el intercambio de información.
+
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/LogoPetropolisSF.png" alt="Petropolis" style="max-width:50%;">
+</p>
 
 ### Los objetivos generales de este proyecto son los siguientes
 
@@ -37,10 +25,7 @@ En este proyecto se ha desarrollado una red social centrada en las mascotas, que
 * Emplear un servicio externo para la persistencia de datos de la aplicación
 * Crear una suite de pruebas unitarias que permitan testear código asíncrono
 
-Para lograr estos objetivos, deberás aprender y hacer uso de las siguientes
-herramientas o habilidades técnicas:
-
-## 3. Objetivos de aprendizaje
+## 2. Objetivos de aprendizaje
 
 ### HTML
 
@@ -97,17 +82,39 @@ herramientas o habilidades técnicas:
 - **Firebase Auth**
 - **Firestore**
 
-## 4. Definición y Objetivos del Proyecto
+## 3. Definición y objetivos del proyecto
 
-### 4.1 Usuarios
+### 3.1 Encuesta
+
+¿Qué tipo de  mascota tienes?
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/encuesta4.JPG" alt="Petropolis" style="max-width:50%;">
+</p>
+
+¿Te gustaría  conocer, y platicar con personas que también tengan mascotas como las tuyas? 
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/encuesta1.JPG" alt="Petropolis" style="max-width:50%;">
+</p>
+
+¿Te gustaría leer y/o publicar Anécdotas o tip's de como cuidar a tus mascotas? 
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/Encuesta2.JPG" alt="Petropolis" style="max-width:50%;">
+</p>
+
+¿Que piensas de poder tener una galería disponible para subir y dar likes a fotos de tus mascotas?
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/encuesta3.JPG" alt="Petropolis" style="max-width:50%;">
+</p>
+
+### 3.2 Usuarios
 
 Los usuarios de esta red social son personas apasionadas por las mascotas y que desean compartir su amor y cuidado por sus amigos peludos con otros usuarios afines. Los usuarios pueden ser dueños de mascotas de cualquier tipo, desde perros y gatos hasta animales exóticos como reptiles o aves. La red social está abierta a usuarios de todas las edades y orígenes, esta pensada para aquellos que buscan conectarse con otros amantes de las mascotas y obtener información útil sobre el cuidado de sus mascotas. Además, esta red social esta diseñada recibir comentarios y reacciones positivas de otros usuarios que comparten su misma pasión. En resumen, cualquier persona que adore a los animales y desee conectarse con otros amantes de las mascotas es bienvenida en esta red social.
 
-### 4.2 Objetivo del Producto (Problemas que resuelve)
+### 3.3 Objetivo del Producto (Problemas que resuelve)
 
 El objetivo de nuestro producto es proporcionar a los dueños de mascotas una plataforma en línea para conectarse con otros dueños de mascotas en su área y compartir información útil sobre el cuidado de los animales. Además, nuestro producto tiene como objetivo ayudar a los dueños de mascotas a encontrar servicios de cuidado de mascotas confiables y de alta calidad en su área, mediante la creación de una red de amigos donde los dueños de mascotas puedan obtener recomendaciones de otros usuarios de confianza. Nuestro producto les permitirá a nuestros usuarios tener tranquilidad y asegurarse de que sus mascotas estén en buenas manos.
 
-## 4.3 Historias de usuario
+## 4. Historias de usuario
 
 ### HU1 Registro de cuenta
     Yo Cómo
@@ -117,13 +124,13 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Conocer e interactuar con nuevas personas que desean publicar algo de sus mascotas.
 
-    ### Criterio de Aceptación
+    **Criterio de Aceptación**
     1.1. El usuario debe poder visualizar los campos a diligenciar y que estos sean claros
     1.2. El usuario debe poder dar click en el botón de registro y que este lo lleve al formulario que debe diligenciar.
     1.3. El usuario debe poder encontrar una página inicial en donde haya un botón de registro.
     1.4 Que sea responsive
 
-    ### Definición de terminado
+    **Definición de terminado**
     1.1. Que no marque error el codigo
     1.2. Pruebas de testeo
     1.3. Pruebas de usabilidad
@@ -138,7 +145,7 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Conocer e interactuar con nuevas personas y ver sus publicaciones
 
-    ### Criterio de Aceptación
+    **Criterio de Aceptación**
     2.1.En la pantalla inicial donde se encuentra ubicadas las opciones registro debe estar incluido la opción de inicio de sesión
     2.2. Al darle click a la opción de inicio de sesión muestra una pantalla con los datos a diligenciar que seria correo y contraseña
     2.3. Encontrara un botón de iniciar sesión
@@ -146,7 +153,7 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     2.5 Error de validación, o de contraseña incorrecta.
     2.6 Que sea Responsive
 
-    ### Definición de Terminado
+    **Definición de Terminado**
     2.1. Que no marque error el codigo
     2.2. Pruebas de testeo
     2.3. Pruebas de usabilidad
@@ -160,11 +167,11 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Interactuar con la red social
 
-    ### Definición de Terminado
+    **Definición de Terminado**
     3.1 Que existan diferentes componentes para cada vista 
     3.2 Que no marque error el código
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     3.1 El usuario debe poder navegar entre diferentes vistas de la pagina.
 
 ### HU4 Crear Post
@@ -175,7 +182,7 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Poder leer Anécdotas o tip's de como cuidar a mi mascota
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     4.1. Leer y/o publicar con otras personas
     4.2. Poder visualizar los comentarios publicados
     4.3. Ver mi historial
@@ -183,7 +190,7 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     4.5. Debe haber un botón que al darle click publique el post en el muro.
     4.6. Siempre que haga una publicación nueva el cajón de texto debe pasar a blanco o vacío
 
-    ### Definición de terminado
+    **Definición de terminado**
     4.1. Que no marque error el codigo
     4.2. Pruebas de testeo
     4.3. Pruebas de usabilidad
@@ -197,12 +204,12 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Hacer la corrección que necesite de mi publicación
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     5.1. El usuario debe encontrar en el post la opción de editar
     5.2. El usuario debe poder encontrar un botón que le permita guardar el cambio
     5.3. Se debe visualiza de manera inmediata el post editado
 
-    ### Definición de Terminado
+    **Definición de Terminado**
     5.1. Que no marque error el código
     5.2. Pruebas de testeo
     5.3. Pruebas de usabilidad
@@ -216,12 +223,12 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     No ver esos comentarios mas en mi muro.
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     6.1. El usuario debe encontrar en el post la opción de Eliminar
     6.2. El usuario debe visualizar una alerta cuando se clickee la opción Eliminar
     6.3. El post debe desaparecer por completo.
 
-    ### Definición de Terminado.
+    **Definición de Terminado**
     6.1. Que no marque error el código
     6.2. Pruebas de testeo
     6.3. Pruebas de usabilidad
@@ -234,11 +241,13 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Interactuar mediante likes con otras publicaciones
     Para
     Demostrar si me gusta o no una publicación.
-    ### Criterios de Aceptación
+
+    **Criterios de Aceptación**
     7.1. Poder dar like a una publicación
     7.2. Que cambie de otro color el like cuando le des click
     7.3. Que sea responsive
-    ### Definición de terminado.
+
+    **Definición de terminado**
     7.1. Que no marque error el codigo
     7.2. Pruebas de testeo
     7.3. Pruebas de usabilidad
@@ -252,12 +261,12 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Mostrar que la publicación ya no es de mi agrado..
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     8.1. Quitar  el like a una publicación
     8.2. Que cambie de otro color el like cuando se retire.
     8.3. Que sea responsive
 
-    ### Definición de Terminado
+    **Definición de Terminado**
     8.1. Que no marque error el codigo
     8.2. Pruebas de testeo
     8.3. Pruebas de usabilidad
@@ -271,29 +280,39 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     Para
     Contar los likes que tiene mi publicación y los de otras personas.
 
-    ### Criterios de Aceptación
+    **Criterios de Aceptación**
     9.1. Poder visualizar un numero al lado del botón de like.
     9.2. Que sea responsive
     9.3. Que el número incremente o disminuya dependiendo del número de likes.
 
-    ### Definición de Terminado
+    **Definición de Terminado**
     9.1. Que no marque error el codigo
     9.2. Pruebas de testeo
     9.3. Pruebas de usabilidad
     9.4. Fiel al prototipo
 
-### 4.4 Diseño de la Interfaz de Usuario
+### 5. Diseño de la interfaz de usuario
 
 PROTOTIPO DE BAJA FIDELIDAD
 En el proceso de desarrollo del proyecto, cada miembro del equipo comenzó a trabajar en la creación de un prototipo de baja fidelidad de forma individual. Esto nos permitió explorar diferentes opciones de diseño y de flujo de usuario. Una vez que cada miembro del equipo completó su prototipo, los compartimos y trabajamos juntas en la unión de ellos. Al unir los prototipos, pudimos combinar nuestras ideas y elegir las mejores opciones de cada uno. De esta manera, creamos un prototipo que incorporó las mejores prácticas de diseño y de usabilidad.
-![Prototipo_de_baja_fidelidad](../DEV004-social-network/src/Img/PrototipoBajaF.jpg)
+
+PROTOTIPO DE BAJA FIDELIDAD![PrototipoBajaF](https://user-images.githubusercontent.com/121992038/232158259-9233dae1-d9ff-4e56-80e6-0501c0e59036.jpg)
 
 PROTOTIPO DE ALTA FIDELIDAD
 Para asegurarnos de que el flujo de nuestra página fuera coherente y fácil de seguir para los usuarios, utilizamos Figma para crear un prototipo de baja fidelidad. Este prototipo nos permitió visualizar cómo el usuario navegará por la página y cómo se conectarán las diferentes secciones. La creación del prototipo de alta fidelidad también nos permitió identificar posibles problemas de diseño y flujo, asegurándonos de que la página fuera óptima para nuestros usuarios.
 
-![Prototipo_de_alta_fidelidad](../DEV004-social-network/src/Img/PrototipoAltaF.jpg)
-[Link de Prototipo en Figma](https://www.figma.com/proto/gzSRRNtQ0mg68hvu3T3Rko/Untitled?node-id=34-19&scaling=scale-down&page-id=0%3A1&starting-point-node-id=34%3A19)
+<p align="center">
+  <img src="../DEV004-social-network/src/Img/PrototipoAltaF.jpg" alt="Prototipo alta fidelidad">
+</p>
 
-### 5.5 Responsive
+<br>
+
+<p align="center">
+  <a href="https://www.figma.com/proto/gzSRRNtQ0mg68hvu3T3Rko/Untitled?node-id=34-19&scaling=scale-down&page-id=0%3A1&starting-point-node-id=34%3A19">Link de Prototipo en Figma</a>
+</p>
+
+### 6. Responsive
 
 Para asegurarnos de que nuestra página web sea accesible en dispositivos móviles, utilizamos la técnica Mobile First para el diseño. Al diseñar para dispositivos móviles primero, nos aseguramos de que la página sea fácil de usar en pantallas más pequeñas y que los elementos clave estén en el lugar correcto. Después de diseñar para dispositivos móviles, expandimos el diseño a tamaños de pantalla más grandes y ajustamos el diseño según fuera necesario para garantizar que la página sea completamente responsive en todas las plataformas.
+
+

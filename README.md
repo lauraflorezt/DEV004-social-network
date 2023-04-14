@@ -14,7 +14,7 @@
 En este proyecto se ha desarrollado una red social centrada en las mascotas, que permite a los usuarios crear cuentas personalizadas y acceder a ella de manera fácil y rápida. Los usuarios pueden publicar información, y disfrutar de la interacción con otros amantes de las mascotas en línea (publicar y likear dichas publicaciones). La red social se construyó utilizando una Single-page Application (SPA) con varias vistas o páginas para una experiencia de usuario fluida y satisfactoria. Además, se utilizó Firebase como backend y Vite como herramienta de compilación para garantizar un rendimiento rápido y confiable. En general, este proyecto se ha creado para fomentar la comunidad de amantes de las mascotas y proporcionar una plataforma para la interacción y el intercambio de información.
 
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/LogoPetropolisSF.png" alt="Petropolis" style="max-width:50%;">
+  <img src="https://user-images.githubusercontent.com/121992038/232165561-05731955-8a27-4fef-9559-491e7bfe4a18.png" alt="Petropolis" style="max-width:50%;">
 </p>
 
 ### Los objetivos generales de este proyecto son los siguientes
@@ -88,23 +88,24 @@ En este proyecto se ha desarrollado una red social centrada en las mascotas, que
 
 ¿Qué tipo de  mascota tienes?
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/encuesta4.JPG" alt="Petropolis" style="max-width:50%;">
+  <img src="https://user-images.githubusercontent.com/121992038/232165677-9270ebad-68bc-43af-a225-495af7269393.JPG" style="max-width:50%;">
 </p>
 
 ¿Te gustaría  conocer, y platicar con personas que también tengan mascotas como las tuyas? 
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/encuesta1.JPG" alt="Petropolis" style="max-width:50%;">
+  <img src="https://user-images.githubusercontent.com/121992038/232166157-d1a7e29e-3312-4a65-b6f0-ffa4e92a25f7.JPG" style="max-width:50%;">
 </p>
 
 ¿Te gustaría leer y/o publicar Anécdotas o tip's de como cuidar a tus mascotas? 
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/Encuesta2.JPG" alt="Petropolis" style="max-width:50%;">
+  <img src="https://user-images.githubusercontent.com/121992038/232165832-c69e8e0a-bcc4-46c4-a967-2831c1e88cca.JPG" style="max-width:50%;">
 </p>
 
 ¿Que piensas de poder tener una galería disponible para subir y dar likes a fotos de tus mascotas?
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/encuesta3.JPG" alt="Petropolis" style="max-width:50%;">
+  <img src="https://user-images.githubusercontent.com/121992038/232165880-a37b9773-d984-4a5c-a483-8224909545a2.JPG" style="max-width:50%;">
 </p>
+
 
 ### 3.2 Usuarios
 
@@ -296,17 +297,15 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
 PROTOTIPO DE BAJA FIDELIDAD
 En el proceso de desarrollo del proyecto, cada miembro del equipo comenzó a trabajar en la creación de un prototipo de baja fidelidad de forma individual. Esto nos permitió explorar diferentes opciones de diseño y de flujo de usuario. Una vez que cada miembro del equipo completó su prototipo, los compartimos y trabajamos juntas en la unión de ellos. Al unir los prototipos, pudimos combinar nuestras ideas y elegir las mejores opciones de cada uno. De esta manera, creamos un prototipo que incorporó las mejores prácticas de diseño y de usabilidad.
 
-PROTOTIPO DE BAJA FIDELIDAD![PrototipoBajaF](https://user-images.githubusercontent.com/121992038/232158259-9233dae1-d9ff-4e56-80e6-0501c0e59036.jpg)
+PROTOTIPO DE BAJA FIDELIDAD![PrototipoBajaF](https://user-images.githubusercontent.com/121992038/232166275-7a8df789-0d61-470d-bd9b-f99f132ba840.jpg)
 
 PROTOTIPO DE ALTA FIDELIDAD
 Para asegurarnos de que el flujo de nuestra página fuera coherente y fácil de seguir para los usuarios, utilizamos Figma para crear un prototipo de baja fidelidad. Este prototipo nos permitió visualizar cómo el usuario navegará por la página y cómo se conectarán las diferentes secciones. La creación del prototipo de alta fidelidad también nos permitió identificar posibles problemas de diseño y flujo, asegurándonos de que la página fuera óptima para nuestros usuarios.
 
 <p align="center">
-  <img src="../DEV004-social-network/src/Img/PrototipoAltaF.jpg" alt="Prototipo alta fidelidad">
+  <img src="https://user-images.githubusercontent.com/121992038/232166319-3a0cf999-ba29-4d92-a399-5cf62f114df1.jpg">
 </p>
-
 <br>
-
 <p align="center">
   <a href="https://www.figma.com/proto/gzSRRNtQ0mg68hvu3T3Rko/Untitled?node-id=34-19&scaling=scale-down&page-id=0%3A1&starting-point-node-id=34%3A19">Link de Prototipo en Figma</a>
 </p>

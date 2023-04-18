@@ -1,6 +1,6 @@
 import { home } from '../src/components/home';
 import { register } from '../src/components/register';
-import { registerWithEmail, signOff } from '../src/lib/authentication';
+import { registerWithEmail, signOff, authGoogle } from '../src/lib/authentication';
 import { login } from '../src/components/login';
 import { timeline } from '../src/components/timeline';
 import { savePublic, postData } from '../src/lib/firestore';
@@ -127,6 +127,14 @@ describe('login', (done) => {
 
       done();
     }, 0);
+  });
+  it('signInWithPopup devuelve un correo válido', async () => {
+    try {
+      const email = 'laurafloreztoro@gamil.com';
+      await authGoogle(email);
+    } catch (error) {
+      expect(error.message).toBe('Correo válido');
+    }
   });
 });
 

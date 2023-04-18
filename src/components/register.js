@@ -1,4 +1,4 @@
-import { updateProfile } from 'firebase/auth';
+// import { updateProfile } from 'firebase/auth';
 import { authGoogle, registerWithEmail } from '../lib/authentication';
 import { auth } from '../lib/firebaseConfig';
 import { logo, googleAccess } from './img';
@@ -79,32 +79,32 @@ export const register = (onNavigate) => {
     const email = emailInput.value;
     const password = passwordInput.value;
     const name = nameInput.value;
+    const userInfo = {
+      email,
+      name,
+      password,
+    };
     console.log(email, password);
-
+    if (email === '' || name === '' || password === '') {
+      alert('Ingrese todos los campos');
+      return;
+    }
     try {
-      const UserCredentials = await registerWithEmail(email, password);
-      console.log({ UserCredentials });
-      console.log('currentUser', auth.currentUser);
-      updateProfile(auth.currentUser, {
-        displayName: nameInput.value,
-        // photoURL: 'https://example.com/john-doe/profile.jpg',
-        // console.log(displayName);
-      }).then(() => {
-        // Profile updated!
-      }).catch((error) => {
-        console.log(error);
-      });
-
+      const userCredentials = await registerWithEmail(
+        userInfo.email,
+        userInfo.password,
+        userInfo.name,
+      );
       localStorage.setItem('name', name);
       onNavigate('/welcome');
-      // eslint-disable-next-line no-console
-      console.log(UserCredentials);
+      console.log(userCredentials);
     } catch (error) {
       if (error.code === 'auth/weak-password') {
-        alert('error en contraseña');
-      }
-      if (error.code === 'auth/email-alre-in-use') {
+        alert('Error en contraseña');
+      } else if (error.code === 'auth/email-already-in-use') {
         alert('El correo ya está registrado');
+      } else {
+        console.log(error);
       }
     }
   });

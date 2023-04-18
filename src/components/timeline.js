@@ -217,7 +217,7 @@ export const timeline = (onNavigate) => {
             updatePost(docum.id, {
               publicacion: editPub.value,
             }).then(() => {
-              console.log('Documento actualizado con éxito');
+              alert('Documento actualizado con éxito');
               pComment.textContent = `${editPub.value}`;
               editPub.replaceWith(pComment);
               saveBtn.remove();

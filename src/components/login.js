@@ -63,7 +63,10 @@ export const login = (onNavigate) => {
     try {
       const UserCredentialsLogin = await signInWithPassword(email, password);
       const name = email.split('@')[0]; // obtener el nombre de usuario
-
+      if (email === '' || password === '') {
+        alert('Ingrese todos los campos');
+        return;
+      }
       localStorage.setItem('name', name);
       onNavigate('/welcome');
 

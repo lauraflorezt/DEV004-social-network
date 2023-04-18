@@ -10,7 +10,12 @@ import {
 import { signOff } from '../lib/authentication';
 import { auth } from '../lib/firebaseConfig';
 import {
-  homeHome, likeIcon, likedIcon, outOut, profileProfile, welcomePic,
+  homeHome,
+  likeIcon,
+  likedIcon,
+  outOut,
+  profileProfile,
+  welcomePic,
 } from './img';
 
 export const timeline = (onNavigate) => {
@@ -96,7 +101,6 @@ export const timeline = (onNavigate) => {
   postData((querySnapshot) => {
     feedSection.innerHTML = '';
     querySnapshot.forEach((docum) => {
-      // console.log(docum.data());
       const postSection = document.createElement('section');
       const halfpComment = document.createElement('div');
       const pComment = document.createElement('p');

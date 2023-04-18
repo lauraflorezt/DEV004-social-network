@@ -158,21 +158,13 @@ describe('timeline', (done) => {
     document.body.innerHTML = `
       <div id="feedSection"></div>
     `;
-
-    timeline(() => { });
+    await timeline(postData);
     setTimeout(() => {
       expect(postData).toHaveBeenCalled();
-
+      expect(document.getElementById('feedSection').innerHTML).toContain('Hello');
       done();
     }, 0);
-    expect(document.getElementById('feedSection').innerHTML).toContain('Hello');
   });
-
-  // jest.mock('../src/lib/firestore', () => ({
-  //   savePublic: jest.fn(() => {
-  //     throw new Error('Some error');
-  //   }),
-  // }));
 
   it('Error en la funcion  savePublic', async () => {
     document.body.innerHTML = `
@@ -184,7 +176,6 @@ describe('timeline', (done) => {
     `;
 
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
-
     const postButton = document.getElementById('postButton');
     postButton.click();
     await Promise.resolve();
@@ -217,10 +208,6 @@ describe('timeline', (done) => {
   });
 });
 
-jest.mock('../src/lib/firestore', () => ({
-  savePublic: jest.fn(),
-  postData: (callback) => callback([]),
-}));
 describe('savePublic', () => {
   test('Debe guardar la publicación', async () => {
     const mockSavePublic = savePublic.mockResolvedValueOnce();

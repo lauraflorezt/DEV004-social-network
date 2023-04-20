@@ -82,9 +82,9 @@ En este proyecto se ha desarrollado una red social centrada en las mascotas, que
 - **Firebase Auth**
 - **Firestore**
 
-## 3. Definición y objetivos del proyecto
+## 3. Definición y objetivos del proyecto📄
 
-### 3.1 Encuesta
+### 3.1 Encuesta📜💹
 
 ¿Qué tipo de  mascota tienes?
 <p align="center">
@@ -107,15 +107,15 @@ En este proyecto se ha desarrollado una red social centrada en las mascotas, que
 </p>
 
 
-### 3.2 Usuarios
+### 3.2 Usuarios🤵
 
 Los usuarios de esta red social son personas apasionadas por las mascotas y que desean compartir su amor y cuidado por sus amigos peludos con otros usuarios afines. Los usuarios pueden ser dueños de mascotas de cualquier tipo, desde perros y gatos hasta animales exóticos como reptiles o aves. La red social está abierta a usuarios de todas las edades y orígenes, esta pensada para aquellos que buscan conectarse con otros amantes de las mascotas y obtener información útil sobre el cuidado de sus mascotas. Además, esta red social esta diseñada recibir comentarios y reacciones positivas de otros usuarios que comparten su misma pasión. En resumen, cualquier persona que adore a los animales y desee conectarse con otros amantes de las mascotas es bienvenida en esta red social.
 
-### 3.3 Objetivo del Producto (Problemas que resuelve)
+### 3.3 Objetivo del Producto (Problemas que resuelve)🚧🗺️🕵️‍♂️
 
 El objetivo de nuestro producto es proporcionar a los dueños de mascotas una plataforma en línea para conectarse con otros dueños de mascotas en su área y compartir información útil sobre el cuidado de los animales. Además, nuestro producto tiene como objetivo ayudar a los dueños de mascotas a encontrar servicios de cuidado de mascotas confiables y de alta calidad en su área, mediante la creación de una red de amigos donde los dueños de mascotas puedan obtener recomendaciones de otros usuarios de confianza. Nuestro producto les permitirá a nuestros usuarios tener tranquilidad y asegurarse de que sus mascotas estén en buenas manos.
 
-## 4. Historias de usuario
+## 4. Historias de usuario👩‍🦱👩‍🦰
 
 ### HU1 Registro de cuenta
     Yo Cómo
@@ -292,7 +292,7 @@ El objetivo de nuestro producto es proporcionar a los dueños de mascotas una pl
     9.3. Pruebas de usabilidad
     9.4. Fiel al prototipo
 
-### 5. Diseño de la interfaz de usuario
+### 5. Diseño de la interfaz de usuario🧍‍♂️
 
 PROTOTIPO DE BAJA FIDELIDAD
 En el proceso de desarrollo del proyecto, cada miembro del equipo comenzó a trabajar en la creación de un prototipo de baja fidelidad de forma individual. Esto nos permitió explorar diferentes opciones de diseño y de flujo de usuario. Una vez que cada miembro del equipo completó su prototipo, los compartimos y trabajamos juntas en la unión de ellos. Al unir los prototipos, pudimos combinar nuestras ideas y elegir las mejores opciones de cada uno. De esta manera, creamos un prototipo que incorporó las mejores prácticas de diseño y de usabilidad.
@@ -310,8 +310,49 @@ Para asegurarnos de que el flujo de nuestra página fuera coherente y fácil de 
   <a href="https://www.figma.com/proto/gzSRRNtQ0mg68hvu3T3Rko/Untitled?node-id=34-19&scaling=scale-down&page-id=0%3A1&starting-point-node-id=34%3A19">Link de Prototipo en Figma</a>
 </p>
 
-### 6. Responsive
+### 6. Responsive💻📱
 
 Para asegurarnos de que nuestra página web sea accesible en dispositivos móviles, utilizamos la técnica Mobile First para el diseño. Al diseñar para dispositivos móviles primero, nos aseguramos de que la página sea fácil de usar en pantallas más pequeñas y que los elementos clave estén en el lugar correcto. Después de diseñar para dispositivos móviles, expandimos el diseño a tamaños de pantalla más grandes y ajustamos el diseño según fuera necesario para garantizar que la página sea completamente responsive en todas las plataformas.
+<p align="center">
+  <img src=".\src\Img\vistas.png">
+</p>
 
 
+### 5.1. Comportamiento de la interfaz de usuario (UI)👥🕺
+
+✔️ **Creación de cuenta de usuario e inicio de sesión**
+* _Login_ con Firebase:
+   - Creación de cuenta de acceso y autenticación con cuenta de correo y
+    contraseña, y también con una cuenta de Google.
+* Validaciones:
+  - Solamente se permite el acceso a usuarios con cuentas válidas.
+  - No pueden haber usuarios repetidos.
+  - La cuenta de usuario debe ser un correo electrónico válido.
+  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
+* Comportamiento:
+  - Al enviarse el formulario de registro o inicio de sesión, debe validarse.
+  - Si hay errores, se deben mostrar mensajes descriptivos para ayudar al
+  usuario a corregirlos.
+
+✔️ **Muro/timeline**
+* Validaciones:
+  - Al publicar, se debe validar que exista contenido en el _input_.
+* Comportamiento:
+  - Al recargar la aplicación, se debe verificar si el usuario está _logueado_
+    antes de mostrar contenido.
+  - Poder publicar un _post_.
+  - Poder dar y quitar _like_ a una publicación. Máximo uno por usuario.
+  - Llevar un conteo de los _likes_.
+  - Poder eliminar un post específico.
+  - Pedir confirmación antes de eliminar un _post_.
+  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
+    que permita editar el texto y luego guardar los cambios.
+  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
+    información editada.
+  - Al recargar la página debo de poder ver los textos editados.
+#### 5.2 Pruebas unitarias (unit tests)📈💹
+
+## 6. Producto Final
+<p align="center">
+  <a href="https://petropolis-esperaanza.vercel.app/">Petropolis</a>
+</p>

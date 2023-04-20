@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* font-family: "Roboto"; */
+  font-family: "Roboto"; 
 }
 
 body {
@@ -23,8 +23,8 @@ input {
   border-color: dimgray;
 }
 
-#loginButton, #signInButton, #loginBtn, #SignInBtn, #postButton, #nextButton, #logOutButton, #confirmButton, #cancelButton {
-  /* font-family: "Roboto"; */
+#loginButton, #signInButton, #loginBtn, #SignInBtn, #nextButton, #logOutButton, #confirmButton, #cancelButton {
+  font-family: "Roboto";
   padding: 10px;
   margin: 2vh;
   border-radius: 15px;
@@ -37,6 +37,23 @@ input {
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+#postButton{
+  font-family: "Roboto";
+  padding: 10px;
+  margin: 2vh;
+  border-radius: 15px;
+  border-style: none;
+  text-align: center;
+  width: 180px;
+  height: 30px;
+  /* background-color: #d49b44; */
+  background-color:  #F6BE6C;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
 
 #BtnGoogle,#likePaw,button:hover {
   cursor: pointer;
@@ -169,7 +186,7 @@ input {
 
 #timelineSection {
   position:sticky;
-   width: 100%;
+  width: 100%;
   height: 100%;
   padding: 15px;
 }
@@ -185,7 +202,8 @@ input {
 }
 
 #halfpComment {
-  background-color: #D9D9D9;
+  background-color: #F9F4F1;
+  /* background-color: #D9D9D9; */
   padding: 30px;
   border: solid black;
   border-width: 1px;
@@ -210,15 +228,26 @@ input {
   border-bottom: 1px solid black;
 }
 
-#editBtn, #deleteBtn, #saveBtn{
-  background-color:transparent;
-  color:black;  
+#editBtn,  #saveBtn{
+  background-color:#431F09;
+  color:#F6BE6C;  
   width: 100px;
   padding: 5px;
   margin: 10px;
   border: none; 
   font-size: 16px;
 }
+#deleteBtn
+{
+  background-color:#F6BE6C;
+  color:#431F09;  
+  width: 100px;
+  padding: 5px;
+  margin: 10px;
+  border: none; 
+  font-size: 16px;
+}
+
 
 #likePawZero, #likePaw{
   width: 30px;

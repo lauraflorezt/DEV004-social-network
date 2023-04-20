@@ -21,7 +21,7 @@ const getTimestamp = () => serverTimestamp();
 const savePublic = (publicacion, likes, name, email, time) => addDoc(collection(db, 'publication'), {
   publicacion, likes, name, email, time,
 });
-const saveUser = (user) => addDoc(collection(db, 'Users'), user);
+const saveUser = (user) => addDoc(collection(db, 'publication'), user);
 const postData = (callback) => onSnapshot(query(collection(db, 'publication'), orderBy('time', 'desc')), callback);
 
 const deletePost = (id) => deleteDoc(doc(db, 'publication', id));

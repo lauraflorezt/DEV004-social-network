@@ -1,4 +1,4 @@
-// import { updateProfile } from 'firebase/auth';
+/* eslint-disable no-alert */
 import { authGoogle, registerWithEmail } from '../lib/authentication';
 import { auth } from '../lib/firebaseConfig';
 import { logo, googleAccess } from './img';
@@ -18,7 +18,7 @@ export const register = (onNavigate) => {
   const BtnGoogle = document.createElement('img');
   const loginBtn = document.createElement('button');
 
-  //* Estamos asignandi atributos para todos los elementos creados.
+  //* Estamos asignando atributos para todos los elementos creados.
   signInSection.setAttribute('id', 'signInSeccion');
   signInHeader.innerHTML = 'Crea una cuenta';
 
@@ -60,7 +60,8 @@ export const register = (onNavigate) => {
   BtnGoogle.setAttribute('id', 'BtnGoogle');
   BtnGoogle.src = googleAccess;
   BtnGoogle.setAttribute('alt', 'BtnGoogle');
-  //* Aqui estamos agregando todo a la sección de SignInPage
+
+  //* Aqui estamos agregando todo a la sección de signInSection
   signInSection.appendChild(signInHeader);
   signInSection.appendChild(coverImg);
   formRegister.appendChild(nameInput);
@@ -74,6 +75,7 @@ export const register = (onNavigate) => {
   signInSection.appendChild(formRegister);
 
   loginBtn.addEventListener('click', () => onNavigate('/login'));
+
   formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value;
@@ -84,31 +86,30 @@ export const register = (onNavigate) => {
       name,
       password,
     };
-    console.log(email, password);
+
+    // console.log(email, password);
     if (email === '' || name === '' || password === '') {
       alert('Ingrese todos los campos');
       return;
     }
     try {
-      const userCredentials = await registerWithEmail(
+      registerWithEmail(
         userInfo.email,
         userInfo.password,
         userInfo.name,
       );
       localStorage.setItem('name', name);
       onNavigate('/welcome');
-      console.log(userCredentials);
     } catch (error) {
       if (error.code === 'auth/weak-password') {
         alert('Error en contraseña');
       } else if (error.code === 'auth/email-already-in-use') {
         alert('El correo ya está registrado');
-      } else {
-        console.log(error);
       }
     }
   });
 
+  // Boton para ingresar con Google
   BtnGoogle.addEventListener('click', async () => {
     try {
       await authGoogle();

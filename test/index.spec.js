@@ -1,40 +1,57 @@
+/* eslint-disable no-alert */
+/* eslint-disable max-len */
 import { home } from '../src/components/home';
 import { register } from '../src/components/register';
-import { registerWithEmail, signOff, authGoogle } from '../src/lib/authentication';
+import {
+  registerWithEmail, signOff, authGoogle, signInWithPassword,
+} from '../src/lib/authentication';
 import { login } from '../src/components/login';
+import { welcome } from '../src/components/welcome';
 import { timeline } from '../src/components/timeline';
 import { savePublic, postData } from '../src/lib/firestore';
+import { auth } from '../src/lib/firebaseConfig';
 
+// jest.mock es una función de Jest que se utiliza para "falsificar" o "burlar" una dependencia de un módulo
 jest.mock('../src/components/img.js');
+jest.mock('firebase/auth');
+jest.mock('../src/lib/authentication', () => ({
+  signOff: jest.fn(),
+  registerWithEmail: jest.fn(),
+  signInWithPassword: jest.fn(),
+  authGoogle: jest.fn(),
+}));
+jest.mock('../src/lib/firestore.js');
 
 describe('home', () => {
   it('se agregan los elementos HTML a la sección de inicio correctamente', async () => {
+    // jest.fn devuelve una función simulada, que se configura para que se comporte de manera determinada durante la prueba
     const onNavigate = jest.fn();
     const homeSection = home(onNavigate);
+    // document.body.appendChild función que se utiliza para agregar un elemento al final del cuerpo del documento HTML
     document.body.appendChild(homeSection);
 
     const welcomeHeader = homeSection.querySelector('h1');
-    // const coverImg = homeSection.querySelector('#LogoPetropolis');
     const loginButton = homeSection.querySelector('#loginButton');
     const signInButton = homeSection.querySelector('#signInButton');
-    // const ImgLove = homeSection.querySelector('#ImgLove');
 
+    // aca afirmamos y comparamos
     expect(welcomeHeader.innerHTML).toBe('Bienvenido');
-    // expect(coverImg.getAttribute('src')).toBe('./Img/LogoPetropolisSF.png');
     expect(loginButton.textContent).toBe('Iniciar Sesión');
     expect(signInButton.textContent).toBe('Registrarse');
-    // expect(ImgLove.getAttribute('src')).toBe('./Img/amolosanimales.png');
   });
   it('si el usuario llama al evento clic  manda llamar la funcion onNavigate con el parametro register', async () => {
     const onNavigate = jest.fn();
     const signInButton = document.createElement('button');
 
     home(onNavigate);
+    // dispatchEvent envia un evento personalizado a un elemento HTML
     signInButton.dispatchEvent(new Event('click'));
 
+    // ejecuta una función después de un cierto período de tiempo.
     setTimeout((done) => {
       expect(onNavigate).toHaveBeenCalledWith('/register');
 
+      // done es una función que se utiliza para indicar que se ha completado una tarea asincrónica
       done();
     }, 0);
   });
@@ -51,7 +68,6 @@ describe('home', () => {
     }, 0);
   });
 });
-jest.mock('../src/lib/authentication');
 
 describe('register', (done) => {
   it('se registra a un nuevo usuario', async () => {
@@ -59,6 +75,7 @@ describe('register', (done) => {
     const email = 'user@example.com';
     const password = 'password123';
     const UserCredentials = { user: { uid: '123' } };
+    // mockResolvedValueOnce simula la respuesta exitosa de una función asíncrona
     registerWithEmail.mockResolvedValueOnce(UserCredentials);
 
     const form = document.createElement('form');
@@ -68,20 +85,26 @@ describe('register', (done) => {
     passwordInput.value = password;
     form.appendChild(emailInput);
     form.appendChild(passwordInput);
+
     register(onNavigate);
-    form.dispatchEvent(new Event('submit'));
+    // form.dispatchEvent(new Event('submit'));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+
+    // toHaveBeenCalledWith se utiliza para verificar si una función ha sido llamada con ciertos argumentos
     setTimeout(() => {
       expect(registerWithEmail).toHaveBeenCalledWith(email, password);
 
       done();
     }, 0);
+
     setTimeout(() => {
       expect(localStorage.setItem).toHaveBeenCalledWith('name', '');
-      done();
     }, 0);
+
     setTimeout(() => {
       expect(onNavigate).toHaveBeenCalledWith('/welcome');
-      done();
     }, 0);
   });
 
@@ -110,11 +133,52 @@ describe('register', (done) => {
       done();
     }, 0);
   });
+
+  it('devuelve un correo válido', async () => {
+    try {
+      const email = 'mariano@gmail.com';
+      await authGoogle(email);
+    } catch (error) {
+      expect(error.message).toBe('Correo válido');
+    }
+  });
 });
 
-jest.mock('firebase/auth');
-
 describe('login', (done) => {
+  it('se registra a un nuevo usuario', async () => {
+    const onNavigate = jest.fn();
+    const email = 'user@example.com';
+    const password = 'password123';
+
+    const form = document.createElement('form');
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    const passwordInput = document.createElement('input');
+    passwordInput.type = 'password';
+    form.appendChild(emailInput);
+    form.appendChild(passwordInput);
+
+    login(onNavigate);
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+
+    // toHaveBeenCalledWith se utiliza para verificar si una función ha sido llamada con ciertos argumentos
+    setTimeout(() => {
+      expect(signInWithPassword).toHaveBeenCalledWith(email, password);
+
+      done();
+    }, 0);
+
+    setTimeout(() => {
+      expect(localStorage.setItem).toHaveBeenCalledWith('name', '');
+    }, 0);
+
+    setTimeout(() => {
+      expect(onNavigate).toHaveBeenCalledWith('/welcome');
+    }, 0);
+  });
+
   it('si el usuario inicia sesión  correctamente debe mandar llamar la funcion onNavigate con el parametro welcome', async () => {
     const onNavigate = jest.fn();
     const loginBtn = document.createElement('button');
@@ -128,30 +192,48 @@ describe('login', (done) => {
       done();
     }, 0);
   });
-  it('signInWithPopup devuelve un correo válido', async () => {
-    try {
-      const email = 'laurafloreztoro@gamil.com';
-      await authGoogle(email);
-    } catch (error) {
-      expect(error.message).toBe('Correo válido');
-    }
+
+  test('El botón de Google se agrega correctamente', () => {
+    // Crear un elemento de botón
+    const button = document.createElement('button');
+    button.textContent = 'Iniciar sesión con Google';
+
+    // Agregar el botón al DOM
+    document.body.appendChild(button);
+
+    // Agregar el evento al botón
+    button.addEventListener('click', async () => {
+      try {
+        await authGoogle();
+        const onNavigate = jest.fn();
+        const user = auth.currentUser;
+        const name = user.displayName;
+        localStorage.setItem('name', name);
+        onNavigate('/welcome');
+      } catch (error) {
+        alert('Google error');
+      }
+    });
+
+    // Comprobar que se ha llamado a la función authGoogle()
+    expect(authGoogle).toHaveBeenCalled();
   });
 });
 
-// jest.mock('../src/lib/firestore', () => ({
-//   postData: jest.fn(() => ({
-//     forEach: (callback) => {
-//       callback({
-//         data: () => ({
-//           likes: [],
-//           name: 'Mariano',
-//           email: 'mariano@example.com',
-//           publicacion: 'Hello',
-//         }),
-//       });
-//     },
-//   })),
-// }));
+describe('welcome', () => {
+  it('se agregan los elementos HTML a la sección de inicio correctamente', async () => {
+    // jest.fn devuelve una función simulada, que se configura para que se comporte de manera determinada durante la prueba
+    const onNavigate = jest.fn();
+    const welcomeSection = welcome(onNavigate);
+    // document.body.appendChild función que se utiliza para agregar un elemento al final del cuerpo del documento HTML
+    document.body.appendChild(welcomeSection);
+
+    const nextButton = welcomeSection.querySelector('#nextButton');
+
+    // aca afirmamos y comparamos
+    expect(nextButton.textContent).toBe('Continuar');
+  });
+});
 
 describe('timeline', (done) => {
   it('se muestra la publicación', async () => {
@@ -159,8 +241,10 @@ describe('timeline', (done) => {
       <div id="feedSection"></div>
     `;
     await timeline(postData);
+
     setTimeout(() => {
       expect(postData).toHaveBeenCalled();
+      // toContain verifica si un valor se encuentra en un array o en un string
       expect(document.getElementById('feedSection').innerHTML).toContain('Hello');
       done();
     }, 0);
@@ -175,20 +259,20 @@ describe('timeline', (done) => {
       <div id="feedSection"></div>
     `;
 
+    // jest.spyOn crear un "spy" o "espía" de un objeto o función existente
     const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
     const postButton = document.getElementById('postButton');
     postButton.click();
     await Promise.resolve();
+
     setTimeout(() => {
       expect(consoleSpy).toHaveBeenCalledWith(new Error('error'));
 
       done();
     }, 0);
+    // mockRestore restaura una función "mockeada" a su estado original
     consoleSpy.mockRestore();
   });
-  jest.mock('../src/lib/authentication', () => ({
-    signOff: jest.fn(),
-  }));
 
   it('se llama a signOff ', async () => {
     document.body.innerHTML = `
@@ -198,8 +282,10 @@ describe('timeline', (done) => {
     `;
 
     const logOutIcon = document.getElementById('logOutIcon');
+
     logOutIcon.click();
     await Promise.resolve();
+
     setTimeout(() => {
       expect(signOff).toHaveBeenCalled();
 

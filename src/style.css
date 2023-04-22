@@ -40,18 +40,19 @@ input {
 
 #postButton{
   font-family: "Roboto";
-  padding: 10px;
+  padding: 5px;
   margin: 2vh;
   border-radius: 15px;
   border-style: none;
   text-align: center;
-  width: 180px;
+  width: 170px;
   height: 30px;
   /* background-color: #d49b44; */
-  background-color:  #F6BE6C;
+  color:  #431F09;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #F6BE6C;
 }
 
 
@@ -174,7 +175,7 @@ input {
   padding: 10px;
   margin:5px;
   border-radius: 10px;
-  background-color: #D9D9D9;
+  background-color: #F9F4F1;
   font-size: 20px;
 }
 
@@ -220,7 +221,7 @@ input {
   display: flex;
   justify-content: space-around;
   border-width: 0 0 1px 1px;
-  background-color: #8b8381;
+  background-color: #627264;
   border-radius: 0 0 10px 10px;
   color:black;
   border-left: 1px solid black;
@@ -229,13 +230,14 @@ input {
 }
 
 #editBtn,  #saveBtn{
-  background-color:#431F09;
-  color:#F6BE6C;  
+  background-color:#BE7938;
+  color:#431F09;  
   width: 100px;
   padding: 5px;
   margin: 10px;
   border: none; 
-  font-size: 16px;
+  font-size: 15px;
+  border-radius: 15px;
 }
 #deleteBtn
 {
@@ -245,7 +247,8 @@ input {
   padding: 5px;
   margin: 10px;
   border: none; 
-  font-size: 16px;
+  font-size: 15px;
+  border-radius: 15px;
 }
 
 
@@ -256,13 +259,15 @@ input {
 
 #divlike{
   padding: 15px;
+  color:#431F09; 
+  font-weight: bold;
 }
 
 #modal{
   border-radius: 10px;
   /* border-color: dimgray; */
   border: none;
-  background-color: #d9d9d9;
+  background-color: #F9F4F1;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -271,12 +276,29 @@ input {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+ #confirmButton{
+  background-color:#BE7938;
+  color:black;
+  font-size: 17px;
+  padding: 5px;
+  margin: 2vh;
+
+ }
+
+ #cancelButton{
+  background-color:#F6BE6C;
+  color:black; 
+  font-size: 17px;
+  padding: 5px;
+  margin: 2vh;
+ }
+
 h3 + p {
   margin-top: 10px;
 }
 
 #btnLike{
-  background-color: #8b8381;
+  background-color: #627264;
   border: none; 
 }
 

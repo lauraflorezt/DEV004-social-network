@@ -1,6 +1,5 @@
 import { logo, welcomePic } from './img';
 
-// const name = register().querySelector(nameInput.value);
 export const welcome = (onNavigate) => {
   //* Aqui estamos creando lo que va en HTML.
   const welcomeSection = document.createElement('section');
@@ -11,7 +10,7 @@ export const welcome = (onNavigate) => {
   const nextButton = document.createElement('button');
   const logOutButton = document.createElement('button');
 
-  //* Estamos asignandi atributos para todos los elementos creados.
+  //* Estamos asignando atributos para todos los elementos creados.
 
   welcomeSection.setAttribute('id', 'welcomeSection');
 
@@ -39,12 +38,15 @@ export const welcome = (onNavigate) => {
 
   logOutButton.setAttribute('id', 'logOutButton');
 
-  //* Aqui estamos agregando todo a la sección de SignInPage
+  //* Aqui estamos agregando todo a la sección de welcomeSection
   welcomeSection.appendChild(coverImg);
   welcomeSection.appendChild(welcomeContainer);
   welcomeSection.appendChild(divwelcome);
+
   divwelcome.appendChild(CircleLogo);
   divwelcome.appendChild(nextButton);
+
   nextButton.addEventListener('click', () => onNavigate('/timeline'));
+
   return welcomeSection;
 };

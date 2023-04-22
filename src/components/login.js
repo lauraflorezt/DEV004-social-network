@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { auth } from '../lib/firebaseConfig';
 import {
   authGoogle,
@@ -46,7 +47,7 @@ export const login = (onNavigate) => {
   BtnGoogle.src = googleAccess;
   BtnGoogle.setAttribute('alt', 'BtnGoogle');
 
-  //* Aqui estamos agregando todo a la sección de SignInPage
+  //* Aqui estamos agregando todo a la sección de loginSection
   loginSection.appendChild(loginHeader);
   loginSection.appendChild(coverImg);
   loginSection.appendChild(emailInput);
@@ -55,13 +56,14 @@ export const login = (onNavigate) => {
   loginSection.appendChild(loginBtn);
   loginSection.appendChild(BtnGoogle);
 
+  // Summit envia los dato del formulario a la Web
   loginSection.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // detiene la acción y realiza otra personalizada
     const email = emailInput.value;
     const password = passwordInput.value;
 
     try {
-      const UserCredentialsLogin = await signInWithPassword(email, password);
+      signInWithPassword(email, password);
       const name = email.split('@')[0]; // obtener el nombre de usuario
       if (email === '' || password === '') {
         alert('Ingrese todos los campos');
@@ -69,17 +71,17 @@ export const login = (onNavigate) => {
       }
       localStorage.setItem('name', name);
       onNavigate('/welcome');
-
-      console.log(UserCredentialsLogin);
     } catch (error) {
-      if (error.code === 'auth/wrong-password') {
+      if (error.code === 'auth/wrong-password') { // Error que indica que la contraseña ingresada no coincide
         alert('Contraseña invalida');
       }
-      if (error.code === 'auth/invalid-email') {
+      if (error.code === 'auth/invalid-email') { // Error que indica que el Email ingresado no coincide
         alert('Correo invalido');
       }
     }
   });
+
+  // Boton para ingresar con Google
   BtnGoogle.addEventListener('click', async () => {
     try {
       await authGoogle();

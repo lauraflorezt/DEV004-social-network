@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import {
   savePublic,
   postData,
@@ -49,7 +50,7 @@ export const timeline = (onNavigate) => {
   inputPost.setAttribute('id', 'inputPost');
   inputPost.setAttribute('placeholder', 'Escribe tu mensaje');
   postButton.setAttribute('id', 'postButton');
-  postButton.textContent = 'Publicar';
+  postButton.innerHTML = '<h3><b>Publicar</b></h1>';
   homeIcon.setAttribute('id', 'homeIcon');
   homeIcon.src = homeHome;
   homeIcon.setAttribute('alt', 'Home Icon');
@@ -92,15 +93,24 @@ export const timeline = (onNavigate) => {
   });
 
   postButton.addEventListener('click', async () => {});
+
+  // Botón para regresar a home
   homeIcon.addEventListener('click', () => onNavigate('/'));
+
+  // Botón para regresar a welcome
   profileIcon.addEventListener('click', () => onNavigate('/welcome'));
+
+  // Botón de cerrar sesión
   logOutIcon.addEventListener('click', async () => {
     await signOff();
     onNavigate('/');
   });
+
+  // querySnapshot contiene todos los documentos de nuestra colección
   postData((querySnapshot) => {
     feedSection.innerHTML = '';
     querySnapshot.forEach((docum) => {
+      // forEach recorre el array de los documentos
       const postSection = document.createElement('section');
       const halfpComment = document.createElement('div');
       const pComment = document.createElement('p');
@@ -136,8 +146,8 @@ export const timeline = (onNavigate) => {
       pComment.textContent = `${docum.data().name}: ${docum.data().publicacion}`;
       postSection.appendChild(pComment);
 
-      editBtn.textContent = 'Editar';
-      deleteBtn.textContent = 'Eliminar';
+      editBtn.innerHTML = '<h4><b>Editar</b></h4>';
+      deleteBtn.innerHTML = '<h4><b>Eliminar</b></h4>';
       halfpComment.appendChild(pComment);
       halfBtns.appendChild(editBtn);
       halfBtns.appendChild(deleteBtn);
@@ -149,6 +159,8 @@ export const timeline = (onNavigate) => {
       postSection.appendChild(halfBtns);
       feedSection.appendChild(postSection);
 
+      // estilo de los garritas para que cambien de color
+      // si da like reconoce al usuario y no da más likes
       if (docum.data().likes.includes(auth.currentUser.uid)) {
         likePawZero.style.display = 'none';
         likePaw.style.display = 'flex';
@@ -162,14 +174,16 @@ export const timeline = (onNavigate) => {
         const user = auth.currentUser.uid;
         const likes = docum.data().likes;
         console.log(auth.currentUser.uid);
-
+        // si el usuario da like los suma
         if (!likes.includes(user)) {
           like(docum, auth);
         } else {
+          // dislike resta el me gusta
           dislike(docum, auth);
         }
       });
 
+      // creasmos un modal para confirmar si desea eliminar la publicacion
       const dialog = document.createElement('dialog');
       const dialogTitle = document.createElement('h3');
       const dialogMessage = document.createElement('p');
@@ -181,31 +195,35 @@ export const timeline = (onNavigate) => {
       cancelButton.setAttribute('id', 'cancelButton');
       dialogTitle.textContent = 'Eliminar publicación';
       dialogMessage.textContent = '¿Estás seguro que deseas eliminar esta publicación?';
-      confirmButton.textContent = 'Eliminar';
-      cancelButton.textContent = 'Cancelar';
+      confirmButton.innerHTML = '<b>Eliminar</b>';
+      cancelButton.innerHTML = '<b>Cancelar</b>';
 
       dialog.appendChild(dialogTitle);
       dialog.appendChild(dialogMessage);
       dialog.appendChild(confirmButton);
       dialog.appendChild(cancelButton);
 
+      // para cuando se de en eliminar aparezca en modal con las opciones
       if (auth.currentUser.email === docum.data().email) {
         deleteBtn.addEventListener('click', () => {
           document.body.appendChild(dialog);
           dialog.showModal();
         });
 
+        // elimina publicación
         confirmButton.addEventListener('click', () => {
           deletePost(docum.id)
             .then(() => {
               dialog.close();
-            }).catch((err) => console.warn(err));
+            });
         });
 
+        // cancela publicación que se quiere eliminar
         cancelButton.addEventListener('click', () => {
           dialog.close();
         });
 
+        // editar publicaiones
         editBtn.addEventListener('click', () => {
           const editPub = document.createElement('input');
           editPub.setAttribute('id', 'editPub');
@@ -214,9 +232,10 @@ export const timeline = (onNavigate) => {
 
           const saveBtn = document.createElement('button');
           saveBtn.setAttribute('id', 'saveBtn');
-          saveBtn.textContent = 'Guardar';
+          saveBtn.innerHTML = '<h4><b>Guardar</b></h4>';
           halfBtns.appendChild(saveBtn);
 
+          // Guarda la publicacion que se edita
           saveBtn.addEventListener('click', () => {
             updatePost(docum.id, {
               publicacion: editPub.value,
@@ -227,7 +246,7 @@ export const timeline = (onNavigate) => {
               saveBtn.remove();
             })
               .catch((error) => {
-                console.error('Error al actualizar el documento', error);
+                alert('Error al actualizar el documento', error);
               });
           });
         });

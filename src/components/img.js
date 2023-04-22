@@ -2,7 +2,7 @@ import slogan from '../Img/amolosanimales.png';
 import googleAccess from '../Img/BtnGoogle.png';
 import welcomePic from '../Img/CircleLogo.png';
 import homeHome from '../Img/homeIcon.png';
-import likedIcon from '../Img/likepaw.png';
+import likedIcon from '../Img/likePaw.png';
 import likeIcon from '../Img/likepawZero1.png';
 import logo from '../Img/LogoPetropolisSF.png';
 import outOut from '../Img/LogOutIcon.png';

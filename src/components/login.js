@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { auth } from '../lib/firebaseConfig';
 import {
   authGoogle,

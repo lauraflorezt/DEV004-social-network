@@ -351,7 +351,18 @@ Para asegurarnos de que nuestra página web sea accesible en dispositivos móvil
     información editada.
   - Al recargar la página debo de poder ver los textos editados.
 #### 5.2 Pruebas unitarias (unit tests)📈💹
+<p align="center">
+  <img src=".\src\Img\test.png">
+</p>
 
+### 5.3.Consideciones tecnicas UX👥🕺
+✔️ **Hacer seciones de _testing de usabilidad_ con el producto en HTML.**
+*Resuldos obtenidos:
+-Mejora en el diseño de botones.
+-Cambio de la paleta de colores .
+<p align="center">
+  <img src=".\src\Img\testUX.png">
+</p>
 ## 6. Producto Final
 <p align="center">
   <a href="https://petropolis-esperaanza.vercel.app/">Petropolis</a>

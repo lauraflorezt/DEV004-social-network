@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable max-len */
 import { home } from '../src/components/home';
 import { register } from '../src/components/register';
 import {
@@ -11,23 +9,27 @@ import { timeline } from '../src/components/timeline';
 import { savePublic, postData } from '../src/lib/firestore';
 import { auth } from '../src/lib/firebaseConfig';
 
-// jest.mock es una función de Jest que se utiliza para "falsificar" o "burlar" una dependencia de un módulo
+// jest.mock es una función de Jest que se utiliza para "falsificar" ,
+// "burlar" una dependencia de un módulo
 jest.mock('../src/components/img.js');
 jest.mock('firebase/auth');
 jest.mock('../src/lib/authentication', () => ({
   signOff: jest.fn(),
   registerWithEmail: jest.fn(),
   signInWithPassword: jest.fn(),
+  code: 'auth/wrong-password',
   authGoogle: jest.fn(),
 }));
 jest.mock('../src/lib/firestore.js');
 
 describe('home', () => {
   it('se agregan los elementos HTML a la sección de inicio correctamente', async () => {
-    // jest.fn devuelve una función simulada, que se configura para que se comporte de manera determinada durante la prueba
+    // jest.fn devuelve una función simulada, que se configura para
+    // que se comporte de manera determinada durante la prueba
     const onNavigate = jest.fn();
     const homeSection = home(onNavigate);
-    // document.body.appendChild función que se utiliza para agregar un elemento al final del cuerpo del documento HTML
+    // document.body.appendChild función que se utiliza para agregar
+    // un elemento al final del cuerpo del documento HTML
     document.body.appendChild(homeSection);
 
     const welcomeHeader = homeSection.querySelector('h1');
@@ -92,18 +94,11 @@ describe('register', (done) => {
       e.preventDefault();
     });
 
-    // toHaveBeenCalledWith se utiliza para verificar si una función ha sido llamada con ciertos argumentos
+    // toHaveBeenCalledWith se utiliza para verificar,
+    // si una función ha sido llamada con ciertos argumentos
     setTimeout(() => {
       expect(registerWithEmail).toHaveBeenCalledWith(email, password);
-
-      done();
-    }, 0);
-
-    setTimeout(() => {
       expect(localStorage.setItem).toHaveBeenCalledWith('name', '');
-    }, 0);
-
-    setTimeout(() => {
       expect(onNavigate).toHaveBeenCalledWith('/welcome');
     }, 0);
   });
@@ -163,18 +158,11 @@ describe('login', (done) => {
       e.preventDefault();
     });
 
-    // toHaveBeenCalledWith se utiliza para verificar si una función ha sido llamada con ciertos argumentos
+    // toHaveBeenCalledWith se utiliza para verificar
+    // si una función ha sido llamada con ciertos argumentos
     setTimeout(() => {
       expect(signInWithPassword).toHaveBeenCalledWith(email, password);
-
-      done();
-    }, 0);
-
-    setTimeout(() => {
       expect(localStorage.setItem).toHaveBeenCalledWith('name', '');
-    }, 0);
-
-    setTimeout(() => {
       expect(onNavigate).toHaveBeenCalledWith('/welcome');
     }, 0);
   });
@@ -192,8 +180,72 @@ describe('login', (done) => {
       done();
     }, 0);
   });
+  it('Enviar formulario de inicio de sesión con credenciales no válidas', async () => {
+    // MocksSubmit login form with invalid credentials
+    const onNavigate = jest.fn();
+    const emailInput = document.createElement('input');
+    emailInput.setAttribute('value', 'test@test.com');
+    const passwordInput = document.createElement('input');
+    passwordInput.setAttribute('value', 'password');
 
-  test('El botón de Google se agrega correctamente', () => {
+    // Test
+    const loginSection = login(onNavigate);
+    loginSection.querySelector('#emailInput').replaceWith(emailInput);
+    loginSection.querySelector('#password').replaceWith(passwordInput);
+    loginSection.dispatchEvent(new Event('submit'));
+
+    setTimeout(() => {
+      expect(signInWithPassword).toHaveBeenCalledWith('test@test.com', 'password');
+      expect(localStorage.setItem).not.toHaveBeenCalled();
+      expect(onNavigate).not.toHaveBeenCalled();
+      expect(alert).toHaveBeenCalledWith('Contraseña invalida');
+      done();
+    }, 0);
+  });
+  it('Enviar formulario de inicio de sesión con campos vacíos', async () => {
+    // Mocks
+    const onNavigate = jest.fn();
+    const emailInput = document.createElement('input');
+    const passwordInput = document.createElement('input');
+    // Test
+    const loginSection = login(onNavigate);
+    loginSection.querySelector('#emailInput').replaceWith(emailInput);
+    loginSection.querySelector('#password').replaceWith(passwordInput);
+    loginSection.dispatchEvent(new Event('submit'));
+    setTimeout(() => {
+      expect(signInWithPassword).not.toHaveBeenCalled();
+      expect(localStorage.setItem).not.toHaveBeenCalled();
+      expect(onNavigate).not.toHaveBeenCalled();
+      expect(alert).toHaveBeenCalledWith('Ingrese todos los campos');
+      done();
+    }, 0);
+  });
+
+  it('debería mostrar una alerta cuando el usuario ingresa una contraseña incorrecta', async () => {
+    // Creamos un div que servirá como contenedor para el formulario generado por la función login
+    const container = document.createElement('div');
+    // Agregamos el formulario al contenedor
+    container.appendChild(login());
+
+    // Simulamos que el usuario envía el formulario
+    // sin completar correctamente el campo de contraseña
+    const form = container.querySelector('form');
+    const emailInput = container.querySelector('#emailInput');
+    const passwordInput = container.querySelector('#password');
+    emailInput.value = 'correo_valido@example.com';
+    passwordInput.value = 'contraseña_invalida';
+    const submitEvent = new Event('submit');
+    form.dispatchEvent(submitEvent);
+
+    // Verificamos que se haya mostrado el alert correspondiente
+    setTimeout(() => {
+      expect(window.alert).toHaveBeenCalledWith('Contraseña invalida');
+
+      done();
+    }, 0);
+  });
+
+  it('El botón de Google se agrega correctamente', () => {
     // Crear un elemento de botón
     const button = document.createElement('button');
     button.textContent = 'Iniciar sesión con Google';
@@ -222,10 +274,12 @@ describe('login', (done) => {
 
 describe('welcome', () => {
   it('se agregan los elementos HTML a la sección de inicio correctamente', async () => {
-    // jest.fn devuelve una función simulada, que se configura para que se comporte de manera determinada durante la prueba
+    // jest.fn devuelve una función simulada,
+    //  que se configura para que se comporte de manera determinada durante la prueba
     const onNavigate = jest.fn();
     const welcomeSection = welcome(onNavigate);
-    // document.body.appendChild función que se utiliza para agregar un elemento al final del cuerpo del documento HTML
+    // document.body.appendChild función que se utiliza
+    // para agregar un elemento al final del cuerpo del documento HTML
     document.body.appendChild(welcomeSection);
 
     const nextButton = welcomeSection.querySelector('#nextButton');
